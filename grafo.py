@@ -1,32 +1,100 @@
+import vertice
+
 class Grafo(object):
     def __init__(self, n):
         self.n = n
-        self.vertices = []
+        self.vertices = [[0 for x in range(n)] for y in range(n)]
+		# self.cores = range(n*n)
 
-    def addVertice(v):
-        self.vertice.append(v)
+    # def addVertice(self, v):
+    #     self.vertice.append(v)
 
-    def montar():
-        nmrVertices = (self.n * self.n) * (self.n * self.n)
+    def montar(self):
+		n = self.n * self.n
+        nmrVertices = (n * n) * (n * n)
 
-        #cria os vertices
-        for i in range(nmrVertices):
-            self.vertice.append(new Vertice())
+		#incializa os vertices
+		k = 0
+		for i in range(n):
+			for j in range(n):
+				self.vertices[i][j] = Vertice(k++, i, j)
 
-        #adiciona adjacencias as linhas
-        for i in range(0, nmrVertices, n*n):
-            for j in range(i, i + (n*n)):
-                for k in range(i , i + (n*n)):
-                    if k is not j:
-                        self.vertices[j].adjacente(vertices[k])
+		#faz adjacencias das linhas e das colunas
+		for i in range(n):
+			for j in range(n):
+				#ajacentes da linha
+				for k in range(n):
+					if k not j:
+						self.vertices[i][j].adjacente(self.vertices[i][k])
 
-        #adiciona adjacencias as colunas
-        for i in range(0, n*n):
-            for j in range(i, i + nmrVertices - (n*n), (n*n)):
-                for k in range(i, i + nmrVertices - (n*n), (n*n)):
-                    if k is not j:
-                        self.vertices[j].adjacente(vertices[k])
+				#ajacentes dacoluna
+				for k in range(n):
+					if k not i:
+						self.vertices[i][j].adjacente(self.vertices[k][j])
 
-        #adiciona adjacencias aos blocos
+		#adicionando ajacentes do mesmo bloco, jeová has power
+		for i in range(n):
+			for j in range(n):
+				#limite direito
+				lim = j+1;
+				while lim % self.n not 0:
+					lim++
+				direito = lim
 
-        #iniciar algumas cores
+				#limite esquerdo
+				lim = j
+				while lim % self.n not 0:
+					lim--
+				esquerdo = lim
+
+				#limite inferior
+				lim = i + 1
+				while lim % self.n not 0:
+					lim++
+				inferor = lim
+
+				#superior
+				lim = i
+				while l % self.n not 0:
+					lim--
+				superior = lim
+
+				for k in range(superior, inferior):
+					for l in range(esquerdo, direito):
+						if k is not i and l is not j:
+							if self.vertices[k][l] not in self.vertices[i][j].edges:
+								self.vertices[i][j].adjacente(self.vertices[k][l])
+
+
+	#retorna matriz de vertices como uma lista
+	def verticesArray(self):
+		n = self.n * self.n
+		vl = []
+
+		for i in range(n):
+			for j in range(n):
+				vl.append(self.vertices[i][j])
+
+		return vl
+
+	#imprime resposta exata
+	def imprimirExato(self):
+		i = 0
+		n = self.n * self.n
+
+		for v in self.resposta:
+			print v.cor
+			i += 1
+			if i % n is 0:
+				print
+
+	#imprime essa porra
+	def imprimir(self):
+		i = 0
+		n = self.n * self.n
+
+		for v in self.resposta:
+			print v.color
+			i += 1
+			if i % n is 0:
+				print

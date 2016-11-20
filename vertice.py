@@ -1,16 +1,26 @@
 class Vertice(object):
-	def __init__(self, name, line, column, block, color = -1):
+	def __init__(self, name, line, column):
 		self.name = name
 		self.edges = []
 		self.grau = 0
 		self.line = line
 		self.column = column
-		self.block = block
-		self.color = color
+		self.status = False
+		self.colors = range(n*n)
 
-	def adjacente(n):
+	def adjacente(self, n):
 		self.edges.append(n)
 		self.grau += 1
 
-	def colorir(color):
-		self.color = color
+	# def colorir(self, color):
+	# 	if not self.imutable:
+	# 		self.colors = color
+
+	# def saturacao(self):
+	# 	cores = []
+	#
+	# 	for adj in self.edges:
+	# 		if adj.color not in cores:
+	# 			cores.append(adj.color)
+	#
+	# 	return cores.size()
