@@ -9,6 +9,9 @@ class Grafo(object):
     # def addVertice(self, v):
     #     self.vertice.append(v)
 
+	def colorir(self, i, j, color):
+		vertices[i][j].colorir(color)
+
     def montar(self):
 		n = self.n * self.n
         nmrVertices = (n * n) * (n * n)

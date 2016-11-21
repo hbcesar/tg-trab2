@@ -12,9 +12,10 @@ class Vertice(object):
 		self.edges.append(n)
 		self.grau += 1
 
-	# def colorir(self, color):
-	# 	if not self.imutable:
-	# 		self.colors = color
+	def colorir(self, color):
+		self.colors = color
+		self.cor = color
+		self.status = True
 
 	# def saturacao(self):
 	# 	cores = []
