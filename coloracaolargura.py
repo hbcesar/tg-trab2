@@ -21,8 +21,9 @@ class ColoracaoLargura(object):
 		fila = Queue()
 		falhas = 0
 		cores = []
+		n = G.n * G.n
 
-		for i in range (9):
+		for i in range (n):
 			cores.append(Cor(i))
 
 		fila.push(G.vertices[0])
@@ -44,8 +45,7 @@ class ColoracaoLargura(object):
 					fila.push(e)
 
 		G.resposta = G.vertices
-
-		return falhas
+		G.falhas = falhas
 	#fim cl
 
 	#tenta colorir o vertice
@@ -74,6 +74,7 @@ class ColoracaoLargura(object):
 						rolezeiro = e
 
 				if self.mudar(G, rolezeiro, cores):
+					v.colorir(c.name)
 					return True
 
 		#se ainda nao conseguiu, sera necessario backtrack
@@ -92,17 +93,15 @@ class ColoracaoLargura(object):
 				if c.instancias is nInstancias:
 					candidatas.append(c)
 
-			print len(candidatas)
 
 			#seleciona randomicamente cor entre as melhores candidatas
 			escolhida = random.choice(candidatas)
 
-			print "escolhida", escolhida
-
 			#pinta com cor escolhida e ripa na xulipa
-			v.colors = escolhida.name
+			v.colorir(escolhida.name)
 			escolhida.update()
-			return True
+
+			return False
 		return False
 	#fim colorir
 

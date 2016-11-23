@@ -3,8 +3,7 @@
 #           2º Trabalho de Teoria dos Grafos
 #              César Henrique Bernabé
 #                   João Reis
-# https://medium.com/@random.wicket/solucionador-de-sudoku-com-teoria-dos-grafos-b62a4fa9609b#.hi11719gh
-# https://pyladiessanca.gitbooks.io/teoria_dos_grafos_-_ufscar_2015/content/chapter4.html
+#
 #**************************************************************
 
 import sys
@@ -22,7 +21,7 @@ def main(argv):
 	falhas = -1
 	# while not flag:
 	# open and read file
-	fp = open("entrada3.txt", 'r')
+	fp = open("entrada5.txt", 'r')
 	data = fp.read().split('\n')
 	data.remove('')
 
@@ -44,14 +43,13 @@ def main(argv):
 
 	g.vertices = g.verticesArray()
 
-	flag = a.cl(g)
-	falhas += 1
+	a.cl(g)
 
 	#
 	# #imprime resultado
 	g.imprimir()
 
-	print "Falhas", flag
+	print "Falhas", g.falhas
 	# g.imprimirExato()
 
 

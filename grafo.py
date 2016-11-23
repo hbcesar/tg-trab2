@@ -4,10 +4,6 @@ class Grafo(object):
 	def __init__(self, n):
 		self.n = n
 		self.vertices = [[0 for x in range(n*n)] for y in range(n*n)]
-		# self.cores = range(n*n)
-
-		# def addVertice(self, v):
-		#     self.vertice.append(v)
 
 	def colorir(self, i, j, color):
 		self.vertices[i][j].colorir(color)
@@ -79,17 +75,6 @@ class Grafo(object):
 				vl.append(self.vertices[i][j])
 
 		return vl
-
-	#imprime resposta exata
-	def imprimirExato(self):
-		i = 0
-		n = self.n * self.n
-
-		for v in self.vertices:
-			print v.cor,
-			i += 1
-			if i % n is 0:
-				print
 
 	#imprime essa porra
 	def imprimir(self):

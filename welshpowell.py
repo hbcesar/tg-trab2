@@ -91,14 +91,13 @@ class WelshPowell(object):
 			#checa se solucao ainda e possivel
 			for v in resposta:
 				if not v.status and len(v.colors) is 0:
-					print "Falha ao encontra solucao"
-					return False
+					v.colorir(random.choice(cores).name)
+					falhas += 1
 
 			#atualiza lista de vertices ja coloridos
 			for v in resposta:
 				if v.status and v not in coloridos:
 					coloridos.append(v)
 
-			G.resposta = resposta
-
-		return True
+		G.resposta = resposta
+		G.falhas = falhas
