@@ -20,6 +20,10 @@ class ColoracaoLargura(object):
 	def cl(self, G):
 		fila = Queue()
 		falhas = 0
+		cores = []
+
+		for i in range (9):
+			cores.append(Cor(i))
 
 		fila.push(G.vertices[0])
 
@@ -36,19 +40,22 @@ class ColoracaoLargura(object):
 
 			#adiciona adjacentes a fila
 			for e in v.edges:
-				if not v.status and e not in fila.queue:
+				if not e.status and e not in fila.queue:
 					fila.push(e)
 
+		G.resposta = G.vertices
+
 		return falhas
+	#fim cl
 
 	#tenta colorir o vertice
-	def colorir(G, v, cores):
+	def colorir(self, G, v, cores):
 		#se vizinhos nao possuem cor, colore com ela
 		for c in cores:
 			temCor = False
 
 			for e in v.edges:
-				if c.name is e.cor:
+				if c.name is e.colors:
 					temCor = True
 
 			if not temCor:
@@ -61,20 +68,21 @@ class ColoracaoLargura(object):
 		#sera necessaria recoloracao
 		if not v.status:
 			for c in cores:
-					#tenta encontrar aonde cor esta e ve se pode mudar com ela
-					for e in v.edges:
-						if e.cor is c.name:
-							rolezeiro = e
+				#tenta encontrar aonde cor esta e ve se pode mudar com ela
+				for e in v.edges:
+					if e.colors is c.name:
+						rolezeiro = e
 
-					if self.mudar(G, rolezeiro, cores):
-						return True
+				if self.mudar(G, rolezeiro, cores):
+					return True
 
-		#se nao conseguiu, sera necessario backtrack
+		#se ainda nao conseguiu, sera necessario backtrack
 		if not v.status:
 			#ordena cores por ordem de instancias
 			cores.sort()
 			nInstancias = cores[0].instancias
 
+			print nInstancias
 			#pega todas as cores com menor instancia
 			candidatas = []
 			for c in cores:
@@ -87,25 +95,26 @@ class ColoracaoLargura(object):
 			escolhida = random.choice(candidatas)
 
 			#pinta com cor escolhida e ripa na xulipa
-			v.cor = escolhida.name
+			v.colors = escolhida.name
 			escolhida.update()
 			return True
 		return False
+	#fim colorir
 
 	def mudar(self, G, rolezeiro, cores):
 		#tenta outra cor senao a atual
 		for c in cores:
-			if c.name is not rolezeiro.cor:
+			if c.name is not rolezeiro.colors:
 				vizinhosTemCor = False
-				for e in v.edges:
-					if c.name is e.cor:
+				for e in rolezeiro.edges:
+					if c.name is e.colors:
 						vizinhosTemCor = True
 
 				#se outra cor pode ser colocada, coloca com raiva
 				if not vizinhosTemCor:
 					#atualiza numero de instancias (-1) da cor que vai ser removida dele
 					for cOld in cores:
-						if cOld.name is rolezeiro.cor:
+						if cOld.name is rolezeiro.colors:
 							cOld.downgrade()
 
 					rolezeiro.colorir(c.name)

@@ -7,7 +7,6 @@ class Vertice(object):
 		self.column = column
 		self.status = False
 		self.colors = range(n*n)
-		self.cor = None
 
 	def adjacente(self, n):
 		self.edges.append(n)
@@ -15,7 +14,6 @@ class Vertice(object):
 
 	def colorir(self, color):
 		self.colors = color
-		# self.cor = color
 		self.status = True
 
 

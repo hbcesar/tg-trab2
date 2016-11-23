@@ -80,58 +80,6 @@ class Grafo(object):
 
 		return vl
 
-	#verifica se linha possui cor
-	def linha(self, linha, cor):
-		for i in range(self.n * self.n):
-			if self.vertices[linha][i].cor is cor:
-				return self.vertices[linha][i]
-		else:
-			return False
-
-	#verifica se coluna possui cor
-	def coluna(self, coluna, cor):
-		for i in range(self.n * self.n):
-			if self.vertices[i][coluna].cor is cor:
-				return self.vertices[i][coluna]
-		else:
-			return False
-
-	#verifca se bloco possui cor
-	def bloco(self, linha, coluna, cor):
-		i = linha
-		j = coluna
-
-		#limite direito
-		lim = j+1;
-		while lim % self.n not 0:
-			lim++
-		direito = lim
-
-		#limite esquerdo
-		lim = j
-		while lim % self.n not 0:
-			lim--
-		esquerdo = lim
-
-		#limite inferior
-		lim = i + 1
-		while lim % self.n not 0:
-			lim++
-		inferor = lim
-
-		#superior
-		lim = i
-		while l % self.n not 0:
-			lim--
-		superior = lim
-
-		for k in range(superior, inferior):
-			for l in range(esquerdo, direito):
-				if self.vertices[k][l].cor is cor:
-					return self.vertices[k][l]
-				else:
-					return False
-
 	#imprime resposta exata
 	def imprimirExato(self):
 		i = 0
