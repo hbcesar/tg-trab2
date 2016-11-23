@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Tabuleiro {
 	public Vertice[][] matriz;
@@ -83,10 +82,9 @@ public class Tabuleiro {
 	}
 	
 	void preenche(int n){
-		boolean inserido = false;
-		int i,j,k;
+		int i,j;
 		int n2 = n*n;
-		int cor;
+
 		Vertice[][] matriz = this.matriz;
 
 		switch(n){
@@ -95,46 +93,55 @@ public class Tabuleiro {
 				break;
 				
 			case 3: 
-				matriz[0][5].cor = 7;
-				matriz[1][6].cor = 5;
+				matriz[0][5].cor = matriz[8][2].cor = 7;
+				matriz[1][6].cor = matriz[4][7].cor = 5;
 				matriz[3][6].cor = 4;
-				matriz[4][3].cor = 1;
-				matriz[4][7].cor = 5;
-				matriz[8][2].cor = 7;
+				matriz[4][3].cor = matriz[8][7].cor = 1;
 				matriz[8][6].cor = 9;
-				matriz[8][7].cor = 1;
 				break;
 				
 			case 4: 
 				matriz[0][4].cor = 16;
-				matriz[0][9].cor = 4;
-				matriz[0][10].cor = 8;
+				matriz[0][9].cor = matriz[11][4].cor = 4;
+				matriz[0][10].cor = matriz[5][15].cor = matriz[13][13].cor = 8;
 				matriz[0][12].cor = 13;
-				matriz[1][5].cor = 15;
-				matriz[2][0].cor = 1;
-				matriz[2][9].cor = 15;
-				matriz[2][14].cor = 12;
-				matriz[4][7].cor = 12;
-				matriz[5][15].cor = 8;
-				matriz[6][15].cor = 12;
-				matriz[7][0].cor = 12;
-				matriz[7][1].cor = 5;
+				matriz[1][5].cor = matriz[2][9].cor = matriz[13][4].cor = 15;
+				matriz[2][0].cor = matriz[9][13].cor = 1;
+				matriz[2][14].cor = matriz[4][7].cor = matriz[6][15].cor = matriz[7][0].cor = 12;
+				matriz[7][1].cor = matriz[12][6].cor = 5;
 				matriz[7][6].cor = 7;
 				matriz[7][9].cor = 3;
 				matriz[7][11].cor = 10;
-				matriz[9][13].cor = 1;
-				matriz[10][15].cor = 14;
-				matriz[11][0].cor = 14;
-				matriz[11][4].cor = 4;
-				matriz[12][6].cor = 5;
-				matriz[13][4].cor = 15;
-				matriz[13][13].cor = 8;
+				matriz[10][15].cor = matriz[11][0].cor = 14;
 				matriz[15][13].cor = 6;
 				break;
 				
 			case 5: 
-				
-				
+				matriz[0][22].cor = matriz[17][6].cor = 13;
+				matriz[0][24].cor = matriz[11][2].cor = matriz[22][9].cor = 9;
+				matriz[1][4].cor = matriz[8][10].cor = matriz[16][2].cor = matriz[19][17].cor = 20;
+				matriz[1][6].cor = matriz[7][12].cor = matriz[20][0].cor = 24;
+				matriz[1][11].cor = matriz[2][16].cor = 3;
+				matriz[1][19].cor = matriz[16][17].cor = matriz[17][22].cor = 1;
+				matriz[1][21].cor = matriz[16][24].cor = 18;
+				matriz[2][14].cor = matriz[20][3].cor = 22;
+				matriz[2][18].cor = matriz[4][4].cor = matriz[16][11].cor = 7;
+				matriz[2][19].cor = matriz[18][22].cor = 2;
+				matriz[2][20].cor = matriz[10][12].cor = matriz[15][13].cor = matriz[24][5].cor = 25;
+				matriz[2][22].cor = matriz[9][9].cor = matriz[11][19].cor = matriz[13][0].cor = 21;
+				matriz[4][16].cor = 17;
+				matriz[5][6].cor = matriz[9][2].cor = 15;
+				matriz[5][15].cor = matriz[6][20].cor = matriz[24][14].cor = 6;
+				matriz[6][9].cor = 19;
+				matriz[8][7].cor = 4;
+				matriz[8][23].cor = matriz[9][4].cor = 8;
+				matriz[9][8].cor = matriz[12][23].cor = 12;
+				matriz[11][5].cor = matriz[12][10].cor = matriz[17][11].cor = 19;
+				matriz[12][14].cor = matriz[19][20].cor = matriz[20][1].cor = 10;
+				matriz[17][2].cor = matriz[22][3].cor = 11;
+				matriz[18][18].cor = matriz[19][23].cor = 16;
+				matriz[21][21].cor = 23;
+				matriz[23][11].cor = 14;
 				break;
 		}
 		
@@ -204,12 +211,16 @@ public class Tabuleiro {
 		int n2 = n*n;
 			for(i=0;i<n2;i++){
 				for(j=0;j<n2;j++){
-					System.out.print("|_" + matriz[i][j].cor);
+					if(matriz[i][j].cor < 10){
+						System.out.print("  |  " + matriz[i][j].cor);
+					}else{
+						System.out.print("  | " + matriz[i][j].cor);
+					}
 				}
-				System.out.println("_|");
-				
+				System.out.print("  |\n");
 			}
 	}
+	
 	
 	static ArrayList<Vertice> matriz_to_list(Vertice[][] v,int n){
 		int n2 = n*n;
