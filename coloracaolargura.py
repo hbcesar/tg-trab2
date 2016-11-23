@@ -79,20 +79,25 @@ class ColoracaoLargura(object):
 		#se ainda nao conseguiu, sera necessario backtrack
 		if not v.status:
 			#ordena cores por ordem de instancias
-			cores.sort()
-			nInstancias = cores[0].instancias
+			# cores.sort()
+			# nInstancias = cores[0].instancias
+			nInstancias = 999999999
+			for c in cores:
+				if c.instancias < nInstancias:
+					nInstancias = c.instancias
 
-			print nInstancias
 			#pega todas as cores com menor instancia
 			candidatas = []
 			for c in cores:
 				if c.instancias is nInstancias:
 					candidatas.append(c)
-				else:
-					break
+
+			print len(candidatas)
 
 			#seleciona randomicamente cor entre as melhores candidatas
 			escolhida = random.choice(candidatas)
+
+			print "escolhida", escolhida
 
 			#pinta com cor escolhida e ripa na xulipa
 			v.colors = escolhida.name
