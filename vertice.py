@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Vertice(object):
 	def __init__(self, name, line, column, n):
 		self.name = name
@@ -15,14 +16,3 @@ class Vertice(object):
 	def colorir(self, color):
 		self.colors = color
 		self.status = True
-
-
-
-	# def saturacao(self):
-	# 	cores = []
-	#
-	# 	for adj in self.edges:
-	# 		if adj.color not in cores:
-	# 			cores.append(adj.color)
-	#
-	# 	return cores.size()

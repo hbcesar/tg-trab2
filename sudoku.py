@@ -7,6 +7,7 @@
 #**************************************************************
 
 import sys
+import time
 from grafo import Grafo
 from welshpowell import WelshPowell
 from coloracaolargura import ColoracaoLargura
@@ -14,44 +15,71 @@ from coloracaolargura import ColoracaoLargura
 def main(argv):
 
 	# #chama algoritmo
-	# a = WelshPowell()
-	a = ColoracaoLargura()
+	a = WelshPowell()
+	# a = ColoracaoLargura()
+	tempos = 0
+	falhas = []
+	exatos = 0
 
-	flag = False
-	falhas = -1
-	# while not flag:
-	# open and read file
-	fp = open("entrada5.txt", 'r')
-	data = fp.read().split('\n')
-	data.remove('')
+	for i in range(10):
+		# open and read file
+		fp = open("entrada5.txt", 'r')
+		data = fp.read().split('\n')
+		data.remove('')
 
-	#pega tamanho do sudoku
-	n = int(data[0])
-	del data[0]
+		#pega tamanho do sudoku
+		n = int(data[0])
+		del data[0]
 
-	#inicializa
-	g = Grafo(n)
-	g.montar()
+		#inicializa
+		g = Grafo(n)
+		g.montar()
 
-	#le elementos estaticos
-	for line in data:
-		verticeEstatico = line.split(';')
-		i = int(verticeEstatico[0])
-		j = int(verticeEstatico[1])
-		color = int(verticeEstatico[2])
-		g.colorir(i, j, color)
+		#le elementos estaticos
+		for line in data:
+			verticeEstatico = line.split(';')
+			i = int(verticeEstatico[0])
+			j = int(verticeEstatico[1])
+			color = int(verticeEstatico[2])
+			g.colorir(i, j, color)
 
-	g.vertices = g.verticesArray()
+		#transforma de matriz para lista
+		g.vertices = g.verticesArray()
 
-	a.cl(g)
+		#roda o algoritmo
+		inicio = time.clock()
+		# a.cl(g)
+		a.wp(g)
+		fim = time.clock()
 
-	#
+		tempos += fim-inicio
+
+		if g.falhas == 0:
+			exatos += 1
+		else:
+			falhas.append(g.falhas)
+
+	#calcula resultados
+	media = 0
+	for f in falhas:
+		media += f
+	if len(falhas):
+		media /= len(falhas)
+	else:
+		falhas.append(0)
+	falhas.sort()
+
+	#imprime resultados
+	print "--------------- RESULTADOS --------------"
+	print "Tempo Médio", tempos/10
+	print "Restrições violadas:"
+	print "\tMédia:\t", media
+	print "\tMelhor:\t", falhas[0]
+	print "\tPior:\t", falhas[-1]
+	print "Soluções corretas:", exatos
+
 	# #imprime resultado
-	g.imprimir()
-
-	print "Falhas", g.falhas
-	# g.imprimirExato()
-
+	# g.imprimir()
 
 if __name__ == '__main__':
 	main(sys.argv)

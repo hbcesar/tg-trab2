@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from vertice import Vertice
 
 class Grafo(object):

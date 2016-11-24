@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from grafo import Grafo
 from cor import Cor
 from collections import deque
@@ -14,6 +15,7 @@ class WelshPowell(object):
 		coloridos = []
 		n = G.n * G.n
 		cores = []
+		falhas = 0
 
 		for i in range(n):
 			cores.append(Cor(i))
@@ -91,6 +93,7 @@ class WelshPowell(object):
 			#checa se solucao ainda e possivel
 			for v in resposta:
 				if not v.status and len(v.colors) is 0:
+					#senao, colore com cor randomica e registra falha
 					v.colorir(random.choice(cores).name)
 					falhas += 1
 

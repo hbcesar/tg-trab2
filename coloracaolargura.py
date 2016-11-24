@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from grafo import Grafo
 from cor import Cor
 from collections import deque
@@ -79,9 +80,7 @@ class ColoracaoLargura(object):
 
 		#se ainda nao conseguiu, sera necessario backtrack
 		if not v.status:
-			#ordena cores por ordem de instancias
-			# cores.sort()
-			# nInstancias = cores[0].instancias
+			#encontra qual a menor instancia de cores
 			nInstancias = 999999999
 			for c in cores:
 				if c.instancias < nInstancias:
@@ -109,6 +108,7 @@ class ColoracaoLargura(object):
 		#tenta outra cor senao a atual
 		for c in cores:
 			if c.name is not rolezeiro.colors:
+				#verifica se rolezeiro pode ser colorido por outra cor senao a atual
 				vizinhosTemCor = False
 				for e in rolezeiro.edges:
 					if c.name is e.colors:

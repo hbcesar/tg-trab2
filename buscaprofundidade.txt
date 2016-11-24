@@ -1,0 +1,35 @@
+n = 2
+--------------- RESULTADOS --------------
+Tempo Médio 0.000122
+Restrições violadas:
+	Média:	0
+	Melhor:	0
+	Pior:	0
+Soluções corretas: 10
+
+n = 3
+--------------- RESULTADOS --------------
+Tempo Médio 0.0027035
+Restrições violadas:
+	Média:	2
+	Melhor:	2
+	Pior:	2
+Soluções corretas: 0
+
+n = 4
+--------------- RESULTADOS --------------
+Tempo Médio 0.0377502
+Restrições violadas:
+	Média:	4
+	Melhor:	4
+	Pior:	5
+Soluções corretas: 0
+
+n = 5
+--------------- RESULTADOS --------------
+Tempo Médio 0.2654152
+Restrições violadas:
+	Média:	6
+	Melhor:	6
+	Pior:	10
+Soluções corretas: 0
