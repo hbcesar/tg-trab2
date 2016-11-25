@@ -16,15 +16,15 @@ def main(argv):
 
 	# #chama algoritmo
 	# a = WelshPowell()
-	a = ColoracaoLargura()
+	a = ColoracaoLargura() #(trocar comentario com a linha de cima se quiser usar WelshPowell)
 
 	for i in range(2, 6):
 		tempos = 0
 		falhas = []
 		exatos = 0
 
-		entrada = "entrada%d.txt" % (i)
-		for i in range(10):
+		entrada = "entradas/entrada%d.txt" % (i)
+		for j in range(10):
 			# open and read file
 			fp = open(entrada, 'r')
 			data = fp.read().split('\n')
@@ -52,7 +52,7 @@ def main(argv):
 			#roda o algoritmo
 			inicio = time.clock()
 			a.cl(g)
-			# a.wp(g)
+			# a.wp(g) (trocar comentario com a linha de cima se quiser usar WelshPowell)
 			fim = time.clock()
 
 			tempos += fim-inicio
@@ -81,7 +81,7 @@ def main(argv):
 		print "\tPior:\t", falhas[-1]
 		print "Soluções corretas:", exatos
 
-		# #imprime resultado
+		# #imprime resultado (descomentar se quiser imprimir solucao)
 		# g.imprimir()
 
 if __name__ == '__main__':
